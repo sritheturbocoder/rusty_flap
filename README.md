@@ -1,2 +1,2 @@
 # flappy_rust
-A game written in Rust similr to famous Flappy birds 
+A game written in Rust similar to famous Flappy birds 
