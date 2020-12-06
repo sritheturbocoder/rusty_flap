@@ -33,7 +33,7 @@ impl State {
         State {
             player: Player::new(5, 25),
             frame_time: 0.0,
-            obstacle: Obstacle::new(SCREEN_WIDTH,0),
+            obstacle: Obstacle::new(SCREEN_WIDTH, 0),
             mode: GameMode::Menu,
             score: 0,
         }
@@ -153,11 +153,11 @@ struct Obstacle {
 
 impl Obstacle {
     fn new(x: i32, score: i32) -> Self {
-        let mut  random = RandomNumberGenerator::new();
+        let mut random = RandomNumberGenerator::new();
         Obstacle {
             x,
             gap_y: random.range(10, 40),
-            size: i32::max(2,20),
+            size: i32::max(2, 20),
         }
     }
 
@@ -167,26 +167,27 @@ impl Obstacle {
 
         for y in 0..self.gap_y - half_size {
             ctx.set(
-                screen_x, y,
-             RGB::named(RED), 
-             RGB::named(BLACK), 
-             to_cp437('|')
+                screen_x,
+                y,
+                RGB::named(RED),
+                RGB::named(BLACK),
+                to_cp437('|'),
             );
         }
 
         for y in self.gap_y + half_size..SCREEN_HEIGHT {
             ctx.set(
-                screen_x, 
-                y, 
-                RGB::named(RED), 
-                RGB::named(BLACK), 
-                to_cp437('|')
+                screen_x,
+                y,
+                RGB::named(RED),
+                RGB::named(BLACK),
+                to_cp437('|'),
             );
         }
     }
 
-    fn hit_obstacle(&self, player: &Player) -> bool{
-        let half_size = self.size /2;
+    fn hit_obstacle(&self, player: &Player) -> bool {
+        let half_size = self.size / 2;
         let does_x_match = player.x == self.x;
         let player_above_gap = player.y < self.gap_y - half_size;
         let pla_below_gap = player.y > self.gap_y + half_size;
